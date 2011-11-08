@@ -93,6 +93,11 @@ namespace Migrator
             get { return _provider.AppliedMigrations; }
         }
 
+        public List<long> AvailableMigrations
+        {
+            get { return _migrationLoader.GetAvailableMigrations(); }
+        }
+
         /// <summary>
         /// Get or set the event logger.
         /// </summary>
