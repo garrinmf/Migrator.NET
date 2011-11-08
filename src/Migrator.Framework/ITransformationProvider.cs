@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Data;
 using System.Collections.Generic;
 
@@ -280,6 +281,14 @@ namespace Migrator.Framework
         /// <param name="sql">The SQL to execute.</param>
         /// <returns></returns>
         int ExecuteNonQuery(string sql);
+
+        /// <summary>
+        /// Execute an arbitrary SQL query
+        /// </summary>
+        /// <param name="sql">The SQL to execute.</param>
+        /// <param name="parameters">Parameters that will be added to the command</param>
+        /// <returns></returns>
+        int ExecuteNonQuery(string sql, IDictionary parameters);
 
         /// <summary>
         /// Execute an arbitrary SQL query

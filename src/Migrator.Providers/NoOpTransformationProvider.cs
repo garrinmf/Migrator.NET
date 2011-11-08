@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Data;
 using Migrator.Framework;
 using ForeignKeyConstraint=Migrator.Framework.ForeignKeyConstraint;
@@ -204,6 +205,11 @@ namespace Migrator.Providers
         }
 
         public int ExecuteNonQuery(string sql)
+        {
+            return 0;
+        }
+
+        public int ExecuteNonQuery(string sql, IDictionary parameters)
         {
             return 0;
         }

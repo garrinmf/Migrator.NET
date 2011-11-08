@@ -12,6 +12,7 @@
 #endregion
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Migrator.Framework;
@@ -562,7 +563,31 @@ namespace Migrator.Providers
                     Logger.Warn(ex.Message);
                     throw;
                 }
-            }		}
+            }
+		}
+
+        public virtual int ExecuteNonQuery(string sql, IDictionary dict)
+        {
+            Logger.Trace(sql);
+            IDbCommand dbCommand = BuildCommand(sql);
+            foreach (object index in dict.Keys)
+            {
+                IDbDataParameter parameter = dbCommand.CreateParameter();
+                parameter.Value = dict[index];
+                parameter.ParameterName = index.ToString();
+                dbCommand.Parameters.Add(parameter);
+            }
+            int num = 0;
+            try
+            {
+                num = dbCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn(ex.Message);
+            }
+            return num;
+        }
 
 		private IDbCommand BuildCommand(string sql)
 		{
@@ -595,7 +620,8 @@ namespace Migrator.Providers
                     Logger.Warn("query failed: {0}", cmd.CommandText);
                     throw;
                 }
-            }		}
+            }
+		}
 
 		public object ExecuteScalar(string sql)
 		{
@@ -611,7 +637,8 @@ namespace Migrator.Providers
                     Logger.Warn("Query failed: {0}", cmd.CommandText);
                     throw;
                 }
-            }		}
+            }
+		}
 
 		public IDataReader Select(string what, string from)
 		{
