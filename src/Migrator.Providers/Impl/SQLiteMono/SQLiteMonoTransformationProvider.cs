@@ -1,21 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using Migrator.Framework;
-using ForeignKeyConstraint=Migrator.Framework.ForeignKeyConstraint;
 using System.Data.SQLite;
+using Migrator.Framework;
+using ForeignKeyConstraint = Migrator.Framework.ForeignKeyConstraint;
+using Mono.Data.Sqlite;
 
-namespace Migrator.Providers.SQLite
+namespace Migrator.Providers.Impl.SQLiteMono
 {
     /// <summary>
     /// Summary description for SQLiteTransformationProvider.
     /// </summary>
-    public class SQLiteTransformationProvider : TransformationProvider
+    public class SQLiteMonoTransformationProvider : TransformationProvider
     {
-        public SQLiteTransformationProvider(Dialect dialect, string connectionString)
+        public SQLiteMonoTransformationProvider(Dialect dialect, string connectionString)
             : base(dialect, connectionString)
         {
-            _connection = new SQLiteConnection(_connectionString);
+            _connection = new SqliteConnection(_connectionString);
             _connection.ConnectionString = _connectionString;
             _connection.Open();
         }

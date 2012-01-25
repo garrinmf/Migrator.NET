@@ -93,6 +93,8 @@
     <Compile Include="ColumnPropertiesMapper.cs" />
     <Compile Include="Dialect.cs" />
     <Compile Include="ForeignKeyConstraintMapper.cs" />
+    <Compile Include="Impl\SQLiteMono\SQLiteMonoDialect.cs" />
+    <Compile Include="Impl\SQLiteMono\SQLiteMonoTransformationProvider.cs" />
     <Compile Include="Impl\Mysql\MysqlDialect.cs" />
     <Compile Include="Impl\Mysql\MySqlTransformationProvider.cs" />
     <Compile Include="Impl\SqlServer\SqlServer2005Dialect.cs" />
